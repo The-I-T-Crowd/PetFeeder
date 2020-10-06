@@ -1,0 +1,32 @@
+CREATE TABLE FISH_FEEDER.USERS (
+	"ID" serial NOT NULL,
+	"NAME" varchar(255) NOT NULL,
+	"TANK_ID" numeric NULL,
+	"ADMIN" boolean NOT NULL DEFAULT FALSE
+);
+
+CREATE TABLE FISH_FEEDER.TANKS (
+	"ID" serial NOT NULL,
+	"NAME" varchar(255) NOT NULL,
+	"FEED_INTERVAL" numberic NOT NULL,
+	"ADMIN" boolean NOT NULL DEFAULT FALSE
+);
+
+CREATE TABLE FISH_FEEDER.FISH (
+	"ID" serial NOT NULL,
+	"NAME" varchar(35) NOT NULL,
+	"TANK_ID" numberic NOT NULL,
+	"DOB" date NOT NULL
+);
+
+CREATE TABLE FISH_FEEDER.HISTORY (
+	"ID" serial NOT NULL,
+	"TANK_ID" numberic NOT NULL,
+	"USER_ID" numberic NOT NULL,
+	"FEED_TIME" date NOT NULL
+);
+stomer_id varchar(50) NOT NULL,
+	firstname varchar(50) NOT NULL
+);
+
+INSERT INTO customers (customer_id, firstname) VALUES ('qweeqwewqe', 'paddy');
