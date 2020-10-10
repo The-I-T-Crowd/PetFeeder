@@ -1,0 +1,76 @@
+****Below is just a list of docker commands which can be used to setup the project locally******
+
+HM204121@DESKTOP-U86OQAB MINGW64 /c/Users/Public/git/PetFeeder/postgres/init (master)
+$ docker pull postgres
+
+HM204121@DESKTOP-U86OQAB MINGW64 /c/Users/Public/git/PetFeeder/postgres/init (master)
+$ docker images
+REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
+postgres            latest              817f2d3d51ec        2 weeks ago         314MB
+
+HM204121@DESKTOP-U86OQAB MINGW64 /c/Users/Public/git/PetFeeder/postgres/init (master)
+$ docker-compose up
+Creating init_postgres_1 ... done
+Attaching to init_postgres_1
+postgres_1  | The files belonging to this database system will be owned by user "postgres".
+
+HM204121@DESKTOP-U86OQAB MINGW64 /c/Users/Public/git/PetFeeder/postgres/init (master)
+$ docker ps
+CONTAINER ID        IMAGE               COMMAND                  CREATED             STATUS              PORTS                    NAMES
+4f60d174bc0c        postgres            "docker-entrypoint.s…"   7 minutes ago       Up 7 minutes        0.0.0.0:5432->5432/tcp   init_postgres_1
+
+HM204121@DESKTOP-U86OQAB MINGW64 /c/Users/Public/git/PetFeeder/postgres/init (master)
+$ docker run --name postgres -e POSTGRES_PASSWORD=password -d postgres
+c776f1828a9f0cbbcfa989234de54ae2c67cd8e0a0495de3b51f475cbecce8c9
+
+HM204121@DESKTOP-U86OQAB MINGW64 /c/Users/Public/git/PetFeeder/postgres/init (master)
+$ docker ps
+CONTAINER ID        IMAGE               COMMAND                  CREATED             STATUS              PORTS                    NAMES
+c776f1828a9f        postgres            "docker-entrypoint.s…"   23 seconds ago      Up 22 seconds       5432/tcp                 postgres
+4f60d174bc0c        postgres            "docker-entrypoint.s…"   9 minutes ago       Up 9 minutes        0.0.0.0:5432->5432/tcp   init_postgres_1
+
+docker exec -ti postgres psql -U user
+
+HM204121@DESKTOP-U86OQAB MINGW64 /c/Users/Public/git/PetFeeder/postgres/init (master)
+$ ./postgres_setup.sh
+DROP SCHEMA
+DROP TABLE
+CREATE SCHEMA
+CREATE TABLE
+CREATE TABLE
+CREATE TABLE
+CREATE TABLE
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+
+HM204121@DESKTOP-U86OQAB MINGW64 /c/Users/Public/git/PetFeeder/postgres/init (master)
+$ winpty docker exec -ti postgres psql -U postgres
+psql (13.0 (Debian 13.0-1.pgdg100+1))
+Type "help" for help.
+
+postgres=# \l
+                                 List of databases
+   Name    |  Owner   | Encoding |  Collate   |   Ctype    |   Access privileges
+-----------+----------+----------+------------+------------+-----------------------
+ postgres  | postgres | UTF8     | en_US.utf8 | en_US.utf8 |
+ template0 | postgres | UTF8     | en_US.utf8 | en_US.utf8 | =c/postgres          +
+           |          |          |            |            | postgres=CTc/postgres
+ template1 | postgres | UTF8     | en_US.utf8 | en_US.utf8 | =c/postgres          +
+           |          |          |            |            | postgres=CTc/postgres
+(3 rows)
+
+postgres=# SELECT * FROM FISH_FEEDER
+postgres-# \dt
+          List of relations
+ Schema |  Name   | Type  |  Owner
+--------+---------+-------+----------
+ public | fish    | table | postgres
+ public | history | table | postgres
+ public | tanks   | table | postgres
+ public | users   | table | postgres
+(4 rows)
+
